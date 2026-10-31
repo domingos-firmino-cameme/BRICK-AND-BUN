@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Core document metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <!-- Search engine metadata -->
+  <title>You're offline</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  
+  <!-- Progressive Web App metadata -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#c45a3c">
+
+  <!-- Stylesheets -->
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #292824;
+      font-synthesis: none;
+      -webkit-font-smoothing: antialiased;
+    }
+  
+    body {
+      box-sizing: border-box;
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+  
+    main {
+      width: min(100%, 440px);
+    }
+  
+    h1 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+    }
+  
+    p {
+      margin: 0;
+      color: #69665f;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+  
+    button {
+      margin-top: 20px;
+      padding: 10px 14px;
+      border: 1px solid #d9d3ca;
+      border-radius: 4px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      border-color: #c45a3c;
+      color: #9e432b;
+    }
+  
+    button:focus-visible {
+      outline: 2px solid #c45a3c;
+      outline-offset: 3px;
+    }
+  </style>
+
+  <style>
+    .offline-illustration {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+  
+    .offline-illustration .scene {
+      position: relative;
+      width: 340px;
+      height: 260px;
+      isolation: isolate;
+    }
+  
+    .offline-illustration .scene.shake {
+      animation: shake 0.35s ease;
+    }
+  
+    @keyframes shake {
+      0%,100% { transform: translateX(0) }
+      25% { transform: translateX(-2px) rotate(-0.5deg) }
+      75% { transform: translateX(2px) rotate(0.5deg) }
+    }
+  
+    .offline-illustration .floor {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 0;
+      border-top: 3px dotted #a8a8a8;
+      opacity: 0.9;
+      z-index: 0;
+    }
+  
+    .offline-illustration .floor::after {
+      content: '';
+      position: absolute;
+      left: -24px;
+      right: -24px;
+      top: 10px;
+      height: 0;
+      border-top: 2px dotted #cccccc;
+      opacity: 0.5;
+    }
+    
+    .offline-illustration .bun-top,
+    .offline-illustration .bun-bottom,
+    .offline-illustration .patty,
+    .offline-illustration .cheese,
+    .offline-illustration .lettuce-bump,
+    .offline-illustration .sesame,
+    .offline-illustration .crumb,
+    .offline-illustration .cheese-drip {
+      background: #f7f5f0;
+    }
+  
+    .offline-illustration .bun-bottom {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      width: 138px;
+      height: 28px;
+      transform: translateX(-50%) rotate(-1.5deg);
+      border: 3px solid #4a4a4a;
+      border-radius: 5px 5px 18px 18px;
+      z-index: 1;
+    }
+  
+    .offline-illustration .bun-bottom::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 7px;
+      height: 0;
+      border-top: 2px dashed #999;
+      opacity: 0.4;
+    }
+  
+    .offline-illustration .lettuce {
+      position: absolute;
+      left: 50%;
+      bottom: 46px;
+      width: 164px;
+      height: 26px;
+      transform: translateX(-50%) rotate(1deg);
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+  
+    .offline-illustration .lettuce-bump {
+      width: 46px;
+      height: 22px;
+      border: 3px solid #5a5a5a;
+      border-radius: 18px 18px 6px 6px;
+      margin-left: -8px;
+      position: relative;
+      z-index: 1;
+    }
+  
+    .offline-illustration .lettuce-bump:first-child { margin-left: 0; border-radius: 22px 14px 6px 12px; z-index: 4; }
+    .offline-illustration .lettuce-bump:nth-child(2) { border-radius: 16px 20px 8px 8px; transform: translateY(1px); z-index: 3; }
+    .offline-illustration .lettuce-bump:nth-child(3) { border-radius: 14px 22px 12px 6px; transform: translateY(-1px); z-index: 2; }
+    .offline-illustration .lettuce-bump:nth-child(4) { border-radius: 12px 18px 10px 16px; z-index: 1; }
+
+    .offline-illustration .patty {
+      position: absolute;
+      left: 50%;
+      bottom: 86px;
+      width: 132px;
+      height: 26px;
+      transform: translateX(-36%) rotate(-18deg);
+      border: 3px solid #4a4a4a;
+      border-radius: 12px 10px 14px 9px;
+      z-index: 3;
+    }
+  
+    .offline-illustration .patty::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      right: 18px;
+      top: 6px;
+      height: 0;
+      border-top: 2px dotted #999;
+      opacity: 0.7;
+    }
+  
+    .offline-illustration .patty::after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: -6px;
+      width: 8px;
+      height: 8px;
+      border: 2px solid #999;
+      border-radius: 50%;
+      background: #f7f5f0;
+    }
+
+    .offline-illustration .cheese {
+      position: absolute;
+      left: 50%;
+      bottom: 68px;
+      width: 126px;
+      height: 20px;
+      transform: translateX(-42%) rotate(-14deg);
+      border: 3px solid #4a4a4a;
+      border-radius: 4px 8px 3px 6px;
+      z-index: 4;
+    }
+  
+    .offline-illustration .cheese::before {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: -3px;
+      width: 18px;
+      height: 18px;
+      border-right: 3px solid #4a4a4a;
+      border-top: 3px solid #4a4a4a;
+      border-radius: 0 8px 0 0;
+      background: #f7f5f0;
+      transform: rotate(2deg);
+    }
+  
+    .offline-illustration .cheese-drip {
+      position: absolute;
+      border: 3px solid #4a4a4a;
+      border-top: none;
+      z-index: 1;
+    }
+  
+    .offline-illustration .cheese-drip.d1 {
+      left: 18px;
+      top: 17px;
+      width: 14px;
+      height: 22px;
+      border-radius: 0 0 10px 10px;
+      transform: rotate(14deg);
+    }
+  
+    .offline-illustration .cheese-drip.d2 {
+      left: 68px;
+      top: 15px;
+      width: 12px;
+      height: 16px;
+      border-radius: 0 0 8px 9px;
+      transform: rotate(14deg);
+    }
+  
+    .offline-illustration .cheese-drip.d1::after, 
+    .offline-illustration .cheese-drip.d2::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      bottom: 3px;
+      height: 3px;
+      border: 2px solid #999;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      background: #f7f5f0;
+    }
+
+    .offline-illustration .bun-top {
+      position: absolute;
+      left: 18px;
+      bottom: 112px;
+      width: 146px;
+      height: 56px;
+      transform: rotate(-32deg);
+      border: 3px solid #4a4a4a;
+      border-radius: 52px 56px 10px 12px;
+      z-index: 5;
+      box-shadow: 0 0 0 4px #f7f5f0, 0 0 0 5px #f7f5f0;
+    }
+  
+    .offline-illustration .bun-top::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 10px;
+      height: 0;
+      border-top: 2px solid #4a4a4a;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+  
+    .offline-illustration .sesame {
+      position: absolute;
+      width: 10px;
+      height: 6px;
+      border: 2px solid #999;
+      border-radius: 50%;
+    }
+  
+    .offline-illustration .sesame.s1 { left: 26px; top: 14px; transform: rotate(-18deg); }
+    .offline-illustration .sesame.s2 { left: 52px; top: 10px; width: 12px; transform: rotate(8deg); }
+    .offline-illustration .sesame.s3 { left: 84px; top: 16px; width: 9px; height: 5px; transform: rotate(-12deg); }
+    .offline-illustration .sesame.s4 { left: 38px; top: 28px; width: 8px; height: 5px; transform: rotate(22deg); border-color: #a8a8a8; }
+    .offline-illustration .sesame.s5 { left: 98px; top: 28px; width: 7px; height: 7px; border-radius: 50%; }
+
+    .offline-illustration .crumb {
+      position: absolute;
+      border: 2px solid #999;
+      border-radius: 50%;
+      z-index: 0;
+    }
+  
+    .offline-illustration .crumb.c1 { left: 196px; bottom: 98px; width: 6px; height: 6px; }
+    .offline-illustration .crumb.c2 { left: 218px; bottom: 42px; width: 4px; height: 4px; border-color: #bbbbbb; }
+    .offline-illustration .crumb.c3 { left: 34px; bottom: 38px; width: 5px; height: 5px; }
+
+    @media (max-width: 480px) {
+      .offline-illustration .scene { transform: scale(0.85); transform-origin: center bottom; }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="offline-illustration" aria-label="minimalist illustration of hamburger falling">
+      <div class="scene">
+        <div class="bun-top"><i class="sesame s1"></i><i class="sesame s2"></i><i class="sesame s3"></i><i class="sesame s4"></i><i class="sesame s5"></i></div>
+        <div class="patty"></div>
+        <div class="cheese"><i class="cheese-drip d1"></i><i class="cheese-drip d2"></i></div>
+        <div class="lettuce"><div class="lettuce-bump"></div><div class="lettuce-bump"></div><div class="lettuce-bump"></div><div class="lettuce-bump"></div></div>
+        <div class="bun-bottom"></div>
+        <i class="crumb c1"></i><i class="crumb c2"></i><i class="crumb c3"></i>
+        <div class="floor"></div>
+      </div>
+    </div>
+
+    <h1>No internet connection</h1>
+    <p>Reconnect to the internet and try again. Your cart is saved on this device.</p>
+    <button type="button" onclick="window.location.reload()">Try again</button>
+  </main>
+</body>
+</html>

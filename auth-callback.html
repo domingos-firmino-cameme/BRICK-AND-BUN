@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Core document metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- Search engine metadata -->
+  <title>Completing sign in | Brick &amp; Bun</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+
+  <!-- Progressive Web App metadata -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.svg">
+
+  <meta name="theme-color" content="#c45a3c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BRICK &amp; BUN">
+
+  <!-- Browser icon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body class="auth-page-shell auth-callback-shell">
+  <main class="auth-callback-page">
+    <section class="auth-callback-state" aria-labelledby="callback-title">
+
+      <span class="auth-spinner" aria-hidden="true"></span>
+
+      <h1 id="callback-title">Completing sign in...</h1>
+
+      <p class="auth-status auth-status-visually-hidden" data-callback-status role="status" aria-live="polite">Completing sign in...</p>
+      <a class="auth-back-link" href="/login">Return to log in</a>
+    </section>
+  </main>
+
+  <script type="module" src="/scripts/auth-callback.js"></script>
+  <script src="/scripts/pwa.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Core document metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- Search engine metadata -->
+  <title>Login | Brick &amp; Bun</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+
+  <!-- Progressive Web App metadata -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.svg">
+
+  <meta name="theme-color" content="#c45a3c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BRICK &amp; BUN">
+
+  <!-- Browser icon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body class="auth-page-shell auth-linear">
+  <main class="auth-page" data-auth-page data-auth-mode="login">
+    <a class="auth-brand" href="/">
+      <img class="logo-mark" src="/favicon.svg" alt="" aria-hidden="true" />
+      <span>Brick <span class="brand-amp">&amp;</span> Bun</span>
+    </a>
+
+    <header class="auth-linear-header">
+      <h1 id="auth-title">Welcome back</h1>
+      <p>Log in to your account.</p>
+    </header>
+
+    <div class="auth-method-switch" role="group" aria-label="Choose login method">
+      <button class="active" type="button" data-auth-method="email" aria-pressed="true">
+        Email
+      </button>
+      <button type="button" data-auth-method="email-otp" aria-pressed="false">
+        OTP
+      </button>
+    </div>
+
+    <form class="auth-form" data-email-form>
+      <label for="login-email">Email</label>
+      <input id="login-email" name="email" type="email" autocomplete="email" required />
+      <label for="login-password">Password</label>
+      <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+      <button class="auth-submit" type="submit">Log in</button>
+    </form>
+
+    <form class="auth-form" data-email-otp-form hidden>
+      <label for="login-otp-email">Email</label>
+      <input id="login-otp-email" name="email" type="email" autocomplete="email" required />
+      <label class="otp-input-label" for="login-code" hidden>
+        Email verification code
+      </label>
+      <input id="login-code" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="Enter your code" hidden />
+      <button class="auth-submit" type="submit">Send email code</button>
+    </form>
+
+    <p class="auth-status" data-auth-status role="status" aria-live="polite"></p>
+
+    <div class="auth-divider">
+      <span>or continue with</span>
+    </div>
+
+    <div class="oauth-buttons">
+      <button type="button" data-oauth-provider="google">
+        <svg class="oauth-brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.2-2.27H12v4.3h6.44a5.5 5.5 0 0 1-2.39 3.61v2.77h3.87c2.26-2.08 3.57-5.15 3.57-8.41Z" />
+          <path fill="#34A853" d="M12 24c3.24 0 5.96-1.08 7.95-2.92l-3.87-2.99c-1.08.72-2.46 1.14-4.08 1.14-3.14 0-5.8-2.12-6.75-4.98H1.25v3.09A12 12 0 0 0 12 24Z" />
+          <path fill="#FBBC05" d="M5.25 14.25a7.2 7.2 0 0 1 0-4.5V6.66h-4A12 12 0 0 0 0 12c0 1.94.47 3.78 1.25 5.34l4-3.09Z" />
+          <path fill="#EA4335" d="M12 4.77c1.77 0 3.36.61 4.61 1.81l3.45-3.45C17.96 1.17 15.24 0 12 0A12 12 0 0 0 1.25 6.66l4 3.09C6.2 6.89 8.86 4.77 12 4.77Z" />
+        </svg>
+        Google
+      </button>
+
+      <button type="button" data-oauth-provider="github">
+        <svg class="oauth-brand-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.62 5.24-5.11 5.51.4.34.75 1.02.75 2.06v3.06c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
+        </svg>
+        GitHub
+      </button>
+    </div>
+
+    <div class="auth-extra-links">
+      <a href="#" class="auth-help-link">Forgot your password?</a>
+      <a href="#" class="auth-help-link">Having trouble logging in?</a>
+    </div>
+
+    <p class="auth-switch">
+      New to Brick &amp; Bun? <a href="/signup">Create an account</a>
+    </p>
+
+    <p class="auth-legal">
+      By continuing, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+    </p>
+
+    <a class="auth-back-link" href="/">Back to the home page</a>
+  </main>
+
+  <script type="module" src="/scripts/auth-page.js"></script>
+  <script src="/scripts/pwa.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Core document metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- Search engine metadata -->
+  <title>Browse the complete menu | Brick &amp; Bun</title>
+  <meta name="description" content="Explore Brick &amp; Bun's complete menu of brick-oven smash burgers and more. Choose your favorites and place an order in Austin, Texas.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://brickandbun-domingos-cameme.vercel.app/menu">
+
+  <!-- Progressive Web App metadata -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#c45a3c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BRICK &amp; BUN">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.svg">
+
+  <!-- Browser icon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph metadata for link previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://brickandbun-domingos-cameme.vercel.app/menu">
+  <meta property="og:site_name" content="BRICK &amp; BUN">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Brick &amp; Bun Full Menu | Smash Burgers in Austin">
+  <meta property="og:description" content="Explore Brick &amp; Bun's complete menu of brick-oven smash burgers and more. Choose your favorites and place an order in Austin, Texas.">
+  <meta property="og:image" content="https://brickandbun-domingos-cameme.vercel.app/assets/images/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="90g smash burger on a toasted sesame brioche bun with melted cheddar, crisp lettuce, tomato and onion.">
+
+  <!-- Twitter Card metadata for link previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Brick &amp; Bun Full Menu | Smash Burgers in Austin">
+  <meta name="twitter:description" content="Explore Brick &amp; Bun's complete menu of brick-oven smash burgers and more. Choose your favorites and place an order in Austin, Texas.">
+  <meta name="twitter:image" content="https://brickandbun-domingos-cameme.vercel.app/assets/images/og-cover.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body class="order-page">
+  <!-- Site header and cart link -->
+  <header class="order-header">
+    <a class="logo" href="/">
+      <img class="logo-mark" src="/favicon.svg" alt="" width="28" height="28" aria-hidden="true">
+      <span>Brick <span class="brand-amp">&amp;</span> Bun</span>
+    </a>
+
+    <a class="order-header-cart" href="/checkout" aria-label="Go to cart, 0 items">
+      <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+      Cart (<span data-cart-count>0</span>)
+    </a>
+  </header>
+
+  <!-- Main menu content -->
+  <main class="order-page-main">
+    <a class="order-back-link" href="/account">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+      Back to the dashboard
+    </a>
+
+    <section aria-labelledby="full-menu-title">
+      <div class="order-page-heading">
+        <div>
+          <p class="section-eyebrow">Fresh from the brick oven</p>
+          <h1 id="full-menu-title">The complete menu</h1>
+          <p>Choose your favorites. Your cart stays with you while you browse.</p>
+        </div>
+
+        <a class="button-primary" href="/checkout">
+          Back to cart &amp; checkout
+          <span class="order-cart-count" data-cart-count>0</span>
+        </a>
+      </div>
+      
+      <p class="order-flow-status" id="menu-status" role="status" aria-live="polite"></p>
+      <div id="full-product-grid" class="product-grid full-product-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Menu and Progressive Web App scripts -->
+  <script type="module" src="/scripts/menu.js"></script>
+  <script src="/scripts/pwa.js" defer></script>
+</body>
+
+</html>

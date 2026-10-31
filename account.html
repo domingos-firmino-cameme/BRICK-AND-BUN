@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-US" class="auth-pending">
+
+<head>
+  <!-- Document Identity -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Account dashboard | Brick & Bun</title>
+
+  <!-- Privacy Boundary -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://esm.sh; style-src 'self'; font-src 'self'; img-src 'self' data: https://*.supabase.co; connect-src 'self' https://esm.sh https://*.supabase.co wss://*.supabase.co; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+
+  <!-- PWA Shell -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#c45a3c">
+
+  <!-- Favicon & Icon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.svg">
+
+  <!-- App Asset Pipeline -->
+  <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body class="account-dashboard">
+  <div class="account-auth-pending" id="account-auth-pending" role="status" aria-live="polite">
+    <strong>Verifying your session…</strong>
+    <span>Your account will appear after your session is confirmed.</span>
+  </div>
+  <aside class="local-demo-banner" id="local-demo-banner" hidden>
+    <span><strong>Local demo</strong> — fictional data only; nothing is sent to Supabase.</span>
+    <div>
+      <a href="/admin?demo=1">Open admin demo</a>
+      <button type="button" data-demo-reset>Reset demo data</button>
+    </div>
+  </aside>
+  <div class="app-shell" id="app-shell" hidden>
+
+    <!-- Sidebar - Primary Account Navigation -->
+    <aside class="sidebar" aria-label="Account tools">
+
+      <!-- Sidebar Brand and Collapse Control -->
+      <div class="sidebar-top">
+        <a class="sidebar-brand" href="#home" data-view="home">
+          <img class="logo-mark" src="/favicon.svg" alt="" width="32" height="32" aria-hidden="true">
+          <span class="sidebar-brand-text">
+            <strong>Brick <span class="brand-amp">&amp;</span> Bun</strong>
+            <span>Account</span>
+          </span>
+        </a>
+
+        <!-- Collapse Control -->
+        <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <path d="M9 3v18"></path>
+            <path class="sidebar-toggle-arrow" d="m16 15-3-3 3-3"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Sidebar Navigation - Views Switcher -->
+      <div class="sidebar-nav-wrap" id="sidebar-nav-wrap">
+        <nav class="sidebar-nav" id="sidebar-nav" aria-label="Account tools">
+          <button type="button" class="nav-item" data-view="home" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            <span>Home</span>
+          </button>
+
+          <button type="button" class="nav-item" data-view="orders">
+            <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+            <span>Orders</span>
+          </button>
+
+          <button type="button" class="nav-item" data-view="notifications">
+            <i class="fa-regular fa-bell" aria-hidden="true"></i>
+            <span>Notifications</span>
+            <span class="notification-count" id="account-notification-count" hidden></span>
+          </button>
+
+          <button type="button" class="nav-item" data-view="addresses">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <span>Addresses</span>
+          </button>
+
+          <button type="button" class="nav-item" data-view="profile">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            <span>Profile</span>
+          </button>
+        </nav>
+
+        <!-- Scroll Indicators - Visual overflow hint -->
+        <div class="sidebar-nav-fade sidebar-nav-fade-left" aria-hidden="true"></div>
+        <div class="sidebar-nav-fade sidebar-nav-fade-right" aria-hidden="true"></div>
+
+        <button type="button" class="sidebar-nav-hint" id="sidebar-nav-hint" aria-label="Scroll to see more account tools" hidden>
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Sidebar Footer - Session Action -->
+      <div class="sidebar-foot">
+        <button type="button" id="account-signout">
+          <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+          <span>Sign out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area - Authenticated Workspace -->
+    <div class="main">
+
+      <!-- Topbar - Context and Primary CTA -->
+      <header class="topbar">
+        <div class="topbar-title">
+          <p class="eyebrow" id="topbar-eyebrow">Your Brick &amp; Bun</p>
+          <h1 id="topbar-heading">Home</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <a class="btn-primary" href="/menu">
+            <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+            Start an order
+          </a>
+        </div>
+      </header>
+
+      <!-- Content - View Container -->
+      <main class="content">
+
+        <!-- Global Status - Supabase / App Feedback -->
+        <p class="status" id="account-status" role="status" aria-live="polite"></p>
+
+        <!-- View: Home - Empty State / Summary -->
+        <section class="view is-active" id="view-home" aria-labelledby="home-heading">
+          <div id="home-root">
+            <div class="empty-state">
+              <div class="empty-state-icon" aria-hidden="true">
+                <i class="fa-regular fa-folder-open"></i>
+              </div>
+
+              <h2 id="home-heading">Nothing here yet</h2>
+              <p>Your saved delivery addresses and order activity will appear here.</p>
+
+              <div class="empty-state-actions">
+                <button class="btn-primary" type="button" data-view="addresses">
+                  <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                  Add address
+                </button>
+
+                <button class="btn-secondary" type="button" data-view="orders">
+                  <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+                  View orders
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- View: Orders - Order History -->
+        <section class="view" id="view-orders" aria-labelledby="orders-heading">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <p class="section-eyebrow">Up to 2.5 hours in central Austin</p>
+                <h2 id="orders-heading">Your orders</h2>
+              </div>
+
+              <button class="btn-secondary" id="orders-refresh" type="button">
+                <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                Refresh
+              </button>
+            </div>
+
+            <div class="list order-list" id="order-list" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-notifications" aria-labelledby="notifications-heading">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <p class="section-eyebrow">Updates from Brick &amp; Bun</p>
+                <h2 id="notifications-heading">Notifications</h2>
+              </div>
+              <button class="btn-secondary" id="notifications-refresh" type="button">
+                <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                Refresh
+              </button>
+            </div>
+            <div class="account-notification-list" id="account-notification-list" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- View: Addresses - Delivery Management -->
+        <section class="view" id="view-addresses" aria-labelledby="addresses-heading">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <p class="section-eyebrow">Central Austin</p>
+                <h2 id="addresses-heading">Addresses</h2>
+              </div>
+
+              <button class="btn-secondary" id="address-new" type="button">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                Add address
+              </button>
+            </div>
+
+            <div class="address-list" id="address-list" aria-live="polite"></div>
+
+            <!-- Address Form - Create / Edit -->
+            <form class="dashboard-form address-form-panel card" id="address-form" hidden>
+              <input type="hidden" name="id" />
+
+              <label for="address-label">Address label</label>
+              <input id="address-label" name="label" placeholder="Home, work..." maxlength="40" required />
+
+              <label for="address-recipient">Recipient name</label>
+              <input id="address-recipient" name="recipient_name" autocomplete="name" maxlength="120" required />
+
+              <label for="address-street">Street address</label>
+              <input id="address-street" name="street" autocomplete="address-line1" maxlength="180" required />
+
+              <label for="address-unit">Apartment, suite, or unit <span>(optional)</span></label>
+              <input id="address-unit" name="unit" autocomplete="address-line2" maxlength="80" />
+
+              <div class="dashboard-form-row">
+                <div>
+                  <label for="address-city">City</label>
+                  <input id="address-city" name="city" value="Austin" autocomplete="address-level2" required />
+                </div>
+
+                <div>
+                  <label for="address-state">State</label>
+                  <input id="address-state" name="state" value="TX" maxlength="2" autocomplete="address-level1" required />
+                </div>
+
+                <div>
+                  <label for="address-zip">ZIP code</label>
+                  <input id="address-zip" name="postal_code" autocomplete="postal-code" inputmode="numeric" maxlength="10" required />
+                </div>
+              </div>
+
+              <label for="address-instructions">Delivery instructions <span>(optional)</span></label>
+              <textarea id="address-instructions" name="delivery_instructions" rows="2" maxlength="300"></textarea>
+
+              <label class="dashboard-checkbox">
+                <input name="is_default" type="checkbox" />
+                Use as my default delivery address
+              </label>
+
+              <div class="dashboard-form-actions">
+                <button class="btn-primary" type="submit">Save address</button>
+                <button class="btn-secondary" id="address-cancel" type="button">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- View: Profile - Personal Details -->
+        <section class="view" id="view-profile" aria-labelledby="profile-heading">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <p class="section-eyebrow">Personal details</p>
+                <h2 id="profile-heading">Your profile</h2>
+              </div>
+            </div>
+
+            <form class="dashboard-form" id="profile-form">
+              <label for="profile-name">Full name</label>
+              <input id="profile-name" name="full_name" autocomplete="name" maxlength="120" required />
+
+              <label for="profile-email">Email address</label>
+              <input id="profile-email" name="email" type="email" autocomplete="email" required />
+              <p class="form-help">Changing your email may require confirmation at the new address.</p>
+
+              <label for="profile-phone">Phone number</label>
+              <input id="profile-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" />
+
+              <div class="dashboard-form-actions">
+                <button class="btn-primary" type="submit">Save profile</button>
+              </div>
+
+              <!-- Danger Zone - Account Deletion -->
+              <div class="delete-box">
+                <p>Deleting your account removes saved details and anonymizes your past orders.</p>
+                <button class="btn-text is-danger" id="account-delete" type="button">Delete my account</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/scripts/account.js"></script>
+  <script src="/scripts/pwa.js" defer></script>
+</body>
+
+</html>
